@@ -1,0 +1,31 @@
+﻿Výchozí situace
+• Každý hráč má k dispozici 4 parašutisty v týlu soupeře a 8 běžných kamenů, rozestavení kamenů 
+je znázorněno na obrázku.
+• Na tahu je bílý hráč.
+
+Průběh hry
+• Obyčejný kámen se může pohybovat o jedno pole diagonálně vpřed, ortogonální pohyb ani pohyb 
+diagonálně vzad není běžným kamenům dovolen.
+• Pokud se obyčejný kámen dostane na konci svého tahu na poslední (resp. první) řadu hrací desky,
+ mění se na dámu.
+• Dáma se pohybuje všemi diagonálními směry o libovolný volný polí.
+• Zajímání soupeřových kamenů (obyčejných i dam) se provádí skákáním jako v klasické dámě a to pouze
+ ve směrech pohybu daného kamene (dáma smí skákat ve všech diagonálních směrech, obyčejný kámen pouze
+ diagonálně vpřed).
+• Obyčejný kámen smí přeskočit soupeřův kámen, který se nachází na sousedním poli, a dopadnout na volné
+ pole bezprostředně za přeskočeným kamenem. Přeskočený kámen je odstraněn z desky.
+• Dáma smí při skoku přeskočit libovolný počet volných polí, zajímanou soupeřovu figurku a dopadnout
+ na libovolné volné pole za ní ve směru skoku.
+• Vícenásobné skoky jsou dovoleny.
+• Skákání je povinné. Pokud je možné po přeskočení figury soupeře pokračovat ve vícenásobném skoku,
+ je hráč povinen tuto možnost využít.
+• Jediný dovolený tah parašutisty je přeskočení soupeřovy figurky v diagonálních směrech vzad. Po takovémto
+ přeskoku se parašutista mění na obyčejný kámen.
+• Vícenásobné skoky parašutistou jsou dovoleny, všechny dílčí skoky musí být provedeny ve směrech
+ diagonálně vzad. Také na parašutisty se vztahuje povinnost skákat, dokud je to možné. 
+• Proměna parašutisty v obyčejný kámen ukončí tah. Není možné po proměně pokračovat ve skoku jako
+ s obyčejným kamenem. 
+
+Konec hry
+• Vítězem se stává hráč, který odstraní z desky (nebo zablokuje) všechny soupeřovy kameny. 
+• Pokud po dobu 30 tahů (60 půltahů) nebyla přeskočená žádná figura, končí hra remízou. 

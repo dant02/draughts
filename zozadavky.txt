@@ -1,0 +1,28 @@
+﻿Rámcové požadavky na projekt v zimním semestru:
+
++ korektní implementace pravidel hry (nemožnost provést tah odporující pravidlům, správné ukončení hry, a podobně);
++ funkční verze algoritmu realizujícího herní strategii;
++ možnost hry dvou lidí, člověka proti „počítači“, a „počítače“ proti „počítači“;
++ na grafické uživatelské rozhraní nejsou kladeny požadavky (program může běžet v textové konzoli);
++ práce se soubory (v zimním semestru nepovinná, avšak doporučená). 
+
+Letní semestr
+
++ korektní implementace pravidel hry (nemožnost provést tah odporující pravidlům, správné ukončení hry a podobně);
++ algoritmy pro herní strategii, nastavitelná obtížnost hry v adekvátním rozsahu (zvlášť pro každého počítačového hráče);
++ možnost hry dvou lidí, člověka proti „počítači“, a „počítače“ proti „počítači“;
++ možnost nastavit a kdykoliv změnit obtížnost i v průběhu hry;
++ možnost kdykoliv zaměnit počítačového a lidského hráče (bez ohledu na to, je-li hráčem člověk nebo počítač, změna i v průběhu hry);
++ ukládání a načítání (ukončených, rozehraných) partií;
++ nápověda „nejlepšího tahu“;
++ undo/redo tahů do libovolné úrovně;
++ prohlížení historie tahů (přehledné zobrazení provedených tahů);
++ robustnost (program musí reagovat správně na nesprávné uživatelské vstupy, zejména ovládání, vadný formát nebo obsah souboru apod.,
+  aplikace nesmí havarovat);
++ vestavěná nápověda;
+? grafické uživatelské rozhraní (GUI) zpracované podle standardů;
++ program ve spustitelné formě, je-li to pro zprovoznění aplikace nutné pak také instalátor (v odůvodněných případech je přípustná spustitelnost
+  z vývojového prostředí);
++ kompletní zdrojové kódy programu včetně dalších částí nutných pro sestavení aplikace;
+? programátorská dokumentace k projektu vytvořená pomocí závazného stylu (PDF verze a zdrojová verze). Obsahuje zejména popis struktury kódu,
+  algoritmy hry včetně herní strategie, postup pro sestavení aplikace. Dokumentace nemusí obsahovat uživatelskou příručku.

@@ -1,0 +1,107 @@
+﻿<Window x:Class="DameGUI.WndRules"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pravidla hry"
+        SizeToContent="Height"
+        ResizeMode="NoResize" Width="500" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <Style x:Key="subHeader" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Black" />
+            <Setter Property="Margin" Value="10,5,0,0" />
+        </Style>
+
+        <Style x:Key="bullet" TargetType="TextBlock">
+            <Setter Property="Margin" Value="15,0,5,0" />
+        </Style>
+
+        <Style x:Key="txt" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="5">
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="15" FontWeight="Bold">Pravidla hry:</TextBlock>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource subHeader}">Výchozí situace</TextBlock>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource txt}">Každý hráč má k dispozici 4 parašutisty v týlu soupeře a 8 běžných kamenů.</TextBlock>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource txt}">Na tahu je bílý hráč.</TextBlock>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource subHeader}">Průběh hry</TextBlock>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource txt}">Obyčejný kámen se může pohybovat o jedno pole diagonálně vpřed, ortogonální pohyb ani pohyb diagonálně vzad není běžným kamenům dovolen.</TextBlock>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource txt}">Pokud se obyčejný kámen dostane na konci svého tahu na poslední (resp. první) řadu hrací desky, mění se na dámu.</TextBlock>
+
+        <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource txt}">Dáma se pohybuje všemi diagonálními směry o libovolný volný polí.</TextBlock>
+
+        <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="1" Style="{StaticResource txt}">Zajímání soupeřových kamenů (obyčejných i dam) se provádí skákáním jako v klasické dámě a to pouze ve směrech pohybu daného kamene (dáma smí skákat ve všech diagonálních směrech, obyčejný kámen pouze diagonálně vpřed).</TextBlock>
+
+        <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="9" Grid.Column="1" Style="{StaticResource txt}">Obyčejný kámen smí přeskočit soupeřův kámen, který se nachází na sousedním poli, a dopadnout na volné pole bezprostředně za přeskočeným kamenem. Přeskočený kámen je odstraněn z desky.</TextBlock>
+
+        <TextBlock Grid.Row="10" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="1" Style="{StaticResource txt}">Dáma smí při skoku přeskočit libovolný počet volných polí, zajímanou soupeřovu figurku a dopadnout na libovolné volné pole za ní ve směru skoku.</TextBlock>
+
+        <TextBlock Grid.Row="11" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="11" Grid.Column="1" Style="{StaticResource txt}">Vícenásobné skoky jsou dovoleny.</TextBlock>
+
+        <TextBlock Grid.Row="12" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="12" Grid.Column="1" Style="{StaticResource txt}">Skákání je povinné. Pokud je možné po přeskočení figury soupeře pokračovat ve vícenásobném skoku, je hráč povinen tuto možnost využít.</TextBlock>
+
+        <TextBlock Grid.Row="13" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="13" Grid.Column="1" Style="{StaticResource txt}">Jediný dovolený tah parašutisty je přeskočení soupeřovy figurky v diagonálních směrech vzad. Po takovémto přeskoku se parašutista mění na obyčejný kámen.</TextBlock>
+
+        <TextBlock Grid.Row="14" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="14" Grid.Column="1" Style="{StaticResource txt}">Vícenásobné skoky parašutistou jsou dovoleny, všechny dílčí skoky musí být provedeny ve směrech diagonálně vzad. Také na parašutisty se vztahuje povinnost skákat, dokud je to možné.</TextBlock>
+
+        <TextBlock Grid.Row="15" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="15" Grid.Column="1" Style="{StaticResource txt}">Proměna parašutisty v obyčejný kámen ukončí tah. Není možné po proměně pokračovat ve skoku jako s obyčejným kamenem.</TextBlock>
+
+        <TextBlock Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource subHeader}">Konec hry</TextBlock>
+
+        <TextBlock Grid.Row="17" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="17" Grid.Column="1" Style="{StaticResource txt}">Vítězem se stává hráč, který odstraní z desky (nebo zablokuje) všechny soupeřovy kameny.</TextBlock>
+
+        <TextBlock Grid.Row="18" Grid.Column="0" Style="{StaticResource bullet}">•</TextBlock>
+        <TextBlock Grid.Row="18" Grid.Column="1" Style="{StaticResource txt}">Pokud po dobu 30 tahů (60 půltahů) nebyla přeskočená žádná figura, končí hra remízou.</TextBlock>
+
+        <Button Name="clsBtn" Content="Zavřít" Grid.Row="19" Grid.Column="1" Width="75" HorizontalAlignment="Right" Margin="0,0,5,5" IsDefault="True" />
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+    </Grid>
+</Window>

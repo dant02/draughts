@@ -1,0 +1,988 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LogicLib</name>
+    </assembly>
+    <members>
+        <member name="T:LogicLib.Extensions">
+            <summary>
+            Několik rozšiřujicích funkcí
+            </summary>
+        </member>
+        <member name="M:LogicLib.Extensions.GetCol(System.Int32)">
+            <summary>
+            sloupec z int
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Extensions.GetRow(System.Int32)">
+            <summary>
+            řádek z int
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Extensions.ToEnum``1(System.Int32,``0@)">
+            <summary>
+            proměna int na enum
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="i"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LogicLib.GameThreadProxy">
+            <summary> proxy třída pro ovládání vlákna hry, obsahuje metody a objekty pro přenos informací mezi vlákny </summary>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.ActivePlayer">
+            <summary>aktivní hráč</summary>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.FirstRun">
+            <summary>první spuštění</summary>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.History">
+            <summary>historie tahů</summary>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.Paused">
+            <summary>pauza hry</summary>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.PlayerSetting">
+            <summary>nastavení hry</summary>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.TurnCount">
+            <summary>počet tahů</summary>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.TurnJump">
+            <summary>počet tahů od posledního skoku</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.ActualIndexChanged">
+            <summary>změna aktuálního indexu</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.GameError">
+            <summary>chyba hry</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.GameLoaded">
+            <summary>hra nahrána</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.GamePaused">
+            <summary>hra pozastavena</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.GameReset">
+            <summary>hra resetována</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.GameSaved">
+            <summary>hra uložena</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.MoreJumps">
+            <summary>více skoků k dispozici</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.PieceChanged">
+            <summary>změna kamene</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.Stroke">
+            <summary>tah</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.StrokeComputer">
+            <summary>tah počítače</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.TurnChange">
+            <summary>změna tahu</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.TurnEnd">
+            <summary>konec tahu</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.TurnReady">
+            <summary>tah připraven</summary>
+        </member>
+        <member name="E:LogicLib.GameThreadProxy.UndoStroke">
+            <summary>vrácení tahu</summary>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.#ctor(System.Windows.Threading.Dispatcher)">
+            <summary>std. konstruktor</summary>
+            <param name="dispatcher"></param>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.Dispose">
+            <summary>odstranění nemanagovaných zdrojů</summary>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.ResetGame(LogicLib.Game.PlayerSettings)">
+            <summary>reset hry</summary>
+            <param name="setting"></param>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.LoadGame(System.Byte[])">
+            <summary>nahraje hru</summary>
+            <param name="pole"></param>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.MakeJump(LogicLib.Lcs,LogicLib.Lcs)">
+            <summary>provede skok</summary>
+            <param name="src">zdroj</param>
+            <param name="trg">cíl</param>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.MakeMove(LogicLib.Lcs,LogicLib.Lcs)">
+            <summary>provede pohyb</summary>
+            <param name="src">zdroj</param>
+            <param name="trg">cíl</param>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.ResetTurn">
+            <summary>reaktivuje tah</summary>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.SaveGame">
+            <summary> uloží hru </summary>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.UndoRedo(System.Boolean,System.Int32)">
+            <summary>UndoRedo vrátí tah / vrátí vrácení tahu</summary>
+            <param name="relative">určuje, zda je daný index relativní nebo absolutní vůči kolekci historie</param>
+            <param name="index">index posunu, pozitivní je cesta zpět, negativní je cesta vpřed</param>
+        </member>
+        <member name="T:LogicLib.GameThreadProxy.LoadEventArgs">
+            <summary> pomocná třída události </summary>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.LoadEventArgs.#ctor(System.Boolean)">
+            <summary> std. konstruktor </summary>
+            <param name="success"></param>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.LoadEventArgs.Success">
+            <summary> nahrání úśpěšné? </summary>
+        </member>
+        <member name="T:LogicLib.GameThreadProxy.PauseEventArgs">
+            <summary>pomocná třída události</summary>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.PauseEventArgs.#ctor(System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="paused"></param>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.PauseEventArgs.Paused">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:LogicLib.GameThreadProxy.SaveEventArgs">
+            <summary>pomocná třída události</summary>
+        </member>
+        <member name="M:LogicLib.GameThreadProxy.SaveEventArgs.#ctor(System.Byte[])">
+            <summary> std. konstruktor </summary>
+            <param name="data"></param>
+        </member>
+        <member name="P:LogicLib.GameThreadProxy.SaveEventArgs.Data">
+            <summary>data k uložení</summary>
+        </member>
+        <member name="T:LogicLib.IOops">
+            <summary>
+            Obsahuje metody pro serializaci a deserializaci objektu hry
+            </summary>
+        </member>
+        <member name="M:LogicLib.IOops.LoadGame(System.Byte[])">
+            <summary>
+            deserializuje hru z byte pole
+            </summary>
+            <param name="pole"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.IOops.SaveGame(LogicLib.Game)">
+            <summary>
+            serializuje hru do byte pole
+            </summary>
+            <param name="game"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LogicLib.Node">
+            <summary>
+            Reprezentuje článek stromu ohodnocení tahů a obsahuje metody pro vytvoření následující úrovně
+            </summary>
+        </member>
+        <member name="P:LogicLib.Node.IsJump">
+            <summary>
+            je skok
+            </summary>
+        </member>
+        <member name="P:LogicLib.Node.Src">
+            <summary>
+            zdroj
+            </summary>
+        </member>
+        <member name="P:LogicLib.Node.Trg">
+            <summary>
+            cíl
+            </summary>
+        </member>
+        <member name="P:LogicLib.Node.Value">
+            <summary>
+            hodnota
+            </summary>
+        </member>
+        <member name="M:LogicLib.Node.#ctor(LogicLib.Lcs,LogicLib.Lcs,LogicLib.Board,System.Int32,System.Int32,System.Boolean,System.Int32)">
+            <summary>
+            vytvoří uzel pro ohodnocení tahu
+            </summary>
+            <param name="src">zdrojová lokace</param>
+            <param name="trg">cílová lokace</param>
+            <param name="deska">aktuální verze herní desky</param>
+            <param name="wDpth">hloubka výpočtu bílého hráče</param>
+            <param name="bDpth">hloubka výpočtu černého hráče</param>
+            <param name="isJump">je daný tah skok?</param>
+            <param name="depth">aktuální hloubka ve které se tento uzel nachází</param>
+        </member>
+        <member name="M:LogicLib.Node.MakeJump(LogicLib.Lcs,LogicLib.Lcs)">
+            <summary>
+            Simulace skoku
+            </summary>
+            <param name="src"></param>
+            <param name="trg"></param>
+        </member>
+        <member name="M:LogicLib.Node.MakeMove(LogicLib.Lcs,LogicLib.Lcs)">
+            <summary>
+            Simulace pohybu
+            </summary>
+            <param name="src"></param>
+            <param name="trg"></param>
+        </member>
+        <member name="M:LogicLib.Node.EvaluateTarget(LogicLib.Stones)">
+             <summary>
+            
+             </summary>
+             <param name="stone"></param>
+             <returns></returns>
+        </member>
+        <member name="T:LogicLib.Rules">
+            <summary>
+            Implementuje pravidla hry, obsahuje metody ověřující a řídící průběh hry
+            </summary>
+        </member>
+        <member name="E:LogicLib.Rules.PieceChanged">
+            <summary>
+            událost změny kamene na jiný typ
+            </summary>
+        </member>
+        <member name="M:LogicLib.Rules.CheckMove(LogicLib.Board,LogicLib.Lcs,LogicLib.Lcs,LogicLib.Players)">
+            <summary>
+            Ověří zda vybraný přesun neodporuje pravidlům
+            </summary>
+            <param name="deska">herní deska</param>
+            <param name="src">zdroj</param>
+            <param name="trg">cíl</param>
+            <param name="player">hráč</param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Rules.CheckJump(LogicLib.Board,LogicLib.Lcs,LogicLib.Lcs@,LogicLib.Players,LogicLib.Lcs@,LogicLib.Lcs@)">
+            <summary>
+            ověří zda daný skok neodporuje pravidlům
+            </summary>
+            <param name="deska">hrací deska</param>
+            <param name="src">zdroj</param>
+            <param name="trg">cíl</param>
+            <param name="player">hráč</param>
+            <param name="dst"></param>
+            <param name="kill"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Rules.CheckPosition(LogicLib.Board,LogicLib.Lcs,System.Boolean,System.Boolean,System.Boolean@)">
+            <summary>
+            ověří pozici kamene, mění kameny na dámy
+            </summary>
+            <param name="deska"></param>
+            <param name="src"></param>
+            <param name="isJump"></param>
+            <param name="loading"></param>
+            <param name="changed">parametr testovacího průběhu</param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Rules.GetPossibleJumps(LogicLib.Board,LogicLib.Lcs,LogicLib.Players,System.Boolean,System.Boolean)">
+            <summary>
+            získá možné další skoky podle pravidel
+            </summary>
+            <param name="deska"></param>
+            <param name="src"></param>
+            <param name="player"></param>
+            <param name="testRun"></param>
+            <param name="real"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Rules.GetPossibleMoves(LogicLib.Board,LogicLib.Lcs,LogicLib.Players)">
+            <summary>
+            získá možné další pohyby podle pravidel
+            </summary>
+            <param name="deska"></param>
+            <param name="src"></param>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LogicLib.Errors">
+            <summary>
+            typy chyb
+            </summary>
+        </member>
+        <member name="F:LogicLib.Errors.Success">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Errors.Fail">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Errors.TargetNotEmpty">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Errors.SourceIsEmpty">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Errors.InvalidSrcColor">
+            <summary></summary>
+        </member>
+        <member name="T:LogicLib.Players">
+            <summary>
+            hráči
+            </summary>
+        </member>
+        <member name="F:LogicLib.Players.White">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Players.Black">
+            <summary></summary>
+        </member>
+        <member name="T:LogicLib.PlayerTypes">
+            <summary>
+            typy hráčů
+            </summary>
+        </member>
+        <member name="F:LogicLib.PlayerTypes.Human">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.PlayerTypes.Computer">
+            <summary></summary>
+        </member>
+        <member name="T:LogicLib.Game">
+            <summary>Objekt hry, koordinuje vykonávání hry, aplikuje požadavky uživatele na hru a vykonává proceduru počítačového hráče, využívá pravidla a počítá strom tahů (nápověda/počítač)</summary>
+        </member>
+        <member name="P:LogicLib.Game.ActivePlayer">
+            <summary>aktivní hráč</summary>
+        </member>
+        <member name="P:LogicLib.Game.ActualHistoryIndex">
+            <summary>aktuální index v historii tahů</summary>
+        </member>
+        <member name="P:LogicLib.Game.Deska">
+            <summary>hrací deska</summary>
+        </member>
+        <member name="P:LogicLib.Game.History">
+            <summary>historie tahů</summary>
+        </member>
+        <member name="P:LogicLib.Game.Locations">
+            <summary>umístění kamenů na desce</summary>
+        </member>
+        <member name="P:LogicLib.Game.PlayerSetting">
+            <summary>nastavení aktuální hry</summary>
+        </member>
+        <member name="P:LogicLib.Game.TurnCount">
+            <summary>počet provedených tahů</summary>
+        </member>
+        <member name="P:LogicLib.Game.TurnJump">
+            <summary>počet tahů od posledního skoku</summary>
+        </member>
+        <member name="P:LogicLib.Game.TurnOptions">
+            <summary>možnosti v daném tahu</summary>
+        </member>
+        <member name="E:LogicLib.Game.ActualIndexChanged">
+            <summary>
+            událost změny aktuálního indexu historie
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.EndOfTurn">
+            <summary>
+            konec tahu
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.GameError">
+            <summary>
+            chyba hry
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.GameReset">
+            <summary>
+            reset hry
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.MoreJumps">
+            <summary>
+            je možné dále skákat
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.PieceChanged">
+            <summary>
+            změna kamene
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.Stroke">
+            <summary>
+            pohyb v tahu
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.TurnChange">
+            <summary>
+            změny tahu
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.TurnReady">
+            <summary>
+            tah připraven
+            </summary>
+        </member>
+        <member name="E:LogicLib.Game.UndoStroke">
+            <summary>
+            tah zpět
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.#ctor">
+            <summary>
+            pro serializaci
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.#ctor(System.Windows.Threading.Dispatcher)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="dispatcher"></param>
+        </member>
+        <member name="M:LogicLib.Game.Dispose">
+            <summary>
+            odstranění nemanagovaných zdrojů
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.NewGame(LogicLib.Game.PlayerSettings,System.Collections.Generic.List{LogicLib.TurnRecord},System.Int32,LogicLib.Board,System.Boolean)">
+            <summary>připraví novou hru</summary>
+            <param name="settings"></param>
+            <param name="history"></param>
+            <param name="historyIndex"></param>
+            <param name="deska"></param>
+            <param name="loadNewGame"></param>
+        </member>
+        <member name="M:LogicLib.Game.LoadGame(LogicLib.Game,System.Int32@)">
+            <summary>
+            ověří nahranou hru a aktivujeji, pokud je v pořádku
+            </summary>
+            <param name="newGame"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Game.MakeMoreJumps">
+            <summary>
+            provede další skoky v multiskoku
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.MakeMove(LogicLib.Lcs,LogicLib.Lcs,System.Boolean)">
+            <summary>
+            provede pohyb
+            </summary>
+            <param name="src"></param>
+            <param name="trg"></param>
+            <param name="loading"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Game.MakeJump(LogicLib.Lcs,LogicLib.Lcs,System.Boolean)">
+            <summary>
+            provede skok
+            </summary>
+            <param name="src"></param>
+            <param name="trg"></param>
+            <param name="loading"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Game.UndoOneTurn(System.Int32)">
+            <summary>
+            vracení tahů
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:LogicLib.Game.RedoOneTurn(System.Int32)">
+            <summary>
+            vracení vrácených tahů
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:LogicLib.Game.OnBeginOfTurn(System.EventArgs)">
+            <summary>
+            spustí událost
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:LogicLib.Game.OnEndOfTurn(System.EventArgs)">
+            <summary>
+            spustí událost
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:LogicLib.Game.OnGameError(LogicLib.Game.ErrorArgs)">
+            <summary>
+            spustí událost
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:LogicLib.Game.OnMoreJumps">
+            <summary>
+            spustí událost
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.OnPieceChanged(LogicLib.Game.PieceChangedEventArgs)">
+            <summary>
+            spustí událost
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:LogicLib.Game.ActualIndexChangedEventArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="M:LogicLib.Game.ActualIndexChangedEventArgs.#ctor(System.Int32)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="P:LogicLib.Game.ActualIndexChangedEventArgs.Index">
+            <summary>
+            index historie tahů
+            </summary>
+        </member>
+        <member name="T:LogicLib.Game.ErrorArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="M:LogicLib.Game.ErrorArgs.#ctor(System.Boolean)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="isJump"></param>
+        </member>
+        <member name="P:LogicLib.Game.ErrorArgs.IsJump">
+            <summary>
+            jeli skok
+            </summary>
+        </member>
+        <member name="T:LogicLib.Game.GameResetEventArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="M:LogicLib.Game.GameResetEventArgs.#ctor(System.Collections.Generic.Dictionary{LogicLib.Lcs,LogicLib.Stones},System.Boolean)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="locs"></param>
+            <param name="resetLoad"></param>
+        </member>
+        <member name="P:LogicLib.Game.GameResetEventArgs.Locations">
+            <summary>Pozice</summary>
+        </member>
+        <member name="P:LogicLib.Game.GameResetEventArgs.ResetAfterLoad">
+            <summary>Je hra resetována po nahrání uložené hry?</summary>
+        </member>
+        <member name="T:LogicLib.Game.OneLocationEventArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="M:LogicLib.Game.OneLocationEventArgs.#ctor(LogicLib.Lcs)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="location"></param>
+        </member>
+        <member name="P:LogicLib.Game.OneLocationEventArgs.Location">
+            <summary>
+            pozice
+            </summary>
+        </member>
+        <member name="T:LogicLib.Game.PieceChangedEventArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="M:LogicLib.Game.PieceChangedEventArgs.#ctor(LogicLib.Lcs,LogicLib.Stones,LogicLib.Stones)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="location"></param>
+            <param name="oldOne"></param>
+            <param name="newOne"></param>
+        </member>
+        <member name="P:LogicLib.Game.PieceChangedEventArgs.Location">
+            <summary>
+            pozice
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.PieceChangedEventArgs.NewType">
+            <summary>
+            nový typ
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.PieceChangedEventArgs.OldType">
+            <summary>
+            starý typ
+            </summary>
+        </member>
+        <member name="T:LogicLib.Game.PlayerSettings">
+            <summary>pomocná třída nastavení hry</summary>
+        </member>
+        <member name="M:LogicLib.Game.PlayerSettings.#ctor">
+            <summary>
+            k serializaci
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.PlayerSettings.#ctor(System.Int32,System.Int32,LogicLib.PlayerTypes,LogicLib.PlayerTypes)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="blackD"></param>
+            <param name="whiteD"></param>
+            <param name="blackT"></param>
+            <param name="whiteT"></param>
+        </member>
+        <member name="P:LogicLib.Game.PlayerSettings.DepthBlack">
+            <summary>
+            hloubka predikce černého hráče
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.PlayerSettings.DepthWhite">
+            <summary>
+            hloubka predikce bílého hráče
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.PlayerSettings.TypeBlack">
+            <summary>
+            typ černého hráče
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.PlayerSettings.TypeWhite">
+            <summary>
+            typ bílého hráče
+            </summary>
+        </member>
+        <member name="T:LogicLib.Game.StrokeArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="M:LogicLib.Game.StrokeArgs.#ctor">
+            <summary>
+            pro serializaci
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.StrokeArgs.#ctor(LogicLib.Lcs,LogicLib.Lcs,System.Boolean,LogicLib.Stones,LogicLib.Lcs)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="src"></param>
+            <param name="trg"></param>
+            <param name="isJump"></param>
+            <param name="killType"></param>
+            <param name="killLoc"></param>
+        </member>
+        <member name="P:LogicLib.Game.StrokeArgs.IsJump">
+            <summary>
+            jeli skok
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.StrokeArgs.KillLoc">
+            <summary>
+            pozice zabitého kamene
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.StrokeArgs.KillType">
+            <summary>
+            typ zabitého kamene
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.StrokeArgs.Src">
+            <summary>
+            zdroj
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.StrokeArgs.Trg">
+            <summary>
+            cíl
+            </summary>
+        </member>
+        <member name="T:LogicLib.Game.TurnChangeEventArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="M:LogicLib.Game.TurnChangeEventArgs.#ctor(System.Int32,LogicLib.Players,LogicLib.Game.TurnChangeEventArgs.EventTypes,System.Collections.Generic.Dictionary{LogicLib.Lcs,LogicLib.Stones})">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="index"></param>
+            <param name="activePlayer"></param>
+            <param name="type"></param>
+            <param name="locs"></param>
+        </member>
+        <member name="T:LogicLib.Game.TurnChangeEventArgs.EventTypes">
+            <summary>typy událostí</summary>
+        </member>
+        <member name="F:LogicLib.Game.TurnChangeEventArgs.EventTypes.BeginTurn">
+            <summary> </summary>
+        </member>
+        <member name="F:LogicLib.Game.TurnChangeEventArgs.EventTypes.GameOverJumpLimit">
+            <summary> </summary>
+        </member>
+        <member name="F:LogicLib.Game.TurnChangeEventArgs.EventTypes.GameOverNormal">
+            <summary> </summary>
+        </member>
+        <member name="P:LogicLib.Game.TurnChangeEventArgs.ActivePlayer">
+            <summary>
+            aktivní hráč
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.TurnChangeEventArgs.EventType">
+            <summary>
+            typ události
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.TurnChangeEventArgs.Index">
+            <summary>
+            index tahu
+            </summary>
+        </member>
+        <member name="T:LogicLib.Game.TurnReadyEventArgs">
+            <summary>pomocná třída pro události</summary>
+        </member>
+        <member name="F:LogicLib.Game.TurnReadyEventArgs.TurnOptions">
+            <summary>
+            možnosti tahu
+            </summary>
+        </member>
+        <member name="M:LogicLib.Game.TurnReadyEventArgs.#ctor(System.Collections.Generic.List{LogicLib.Node},LogicLib.Players,LogicLib.PlayerTypes)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="turnOps"></param>
+            <param name="player"></param>
+            <param name="playerType"></param>
+        </member>
+        <member name="P:LogicLib.Game.TurnReadyEventArgs.ActivePlayer">
+            <summary>
+            aktivní hráč
+            </summary>
+        </member>
+        <member name="P:LogicLib.Game.TurnReadyEventArgs.ActivePlayerType">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:LogicLib.Lcs">
+            <summary>
+            relevantní lokace ve hře
+            </summary>
+        </member>
+        <member name="F:LogicLib.Lcs.A1">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.C1">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.E1">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.G1">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.B2">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.D2">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.F2">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.H2">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.A3">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.C3">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.E3">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.G3">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.B4">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.D4">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.F4">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.H4">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.A5">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.C5">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.E5">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.G5">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.B6">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.D6">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.F6">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.H6">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.A7">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.C7">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.E7">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.G7">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.B8">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.D8">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.F8">
+            <summary></summary>
+        </member>
+        <member name="F:LogicLib.Lcs.H8">
+            <summary></summary>
+        </member>
+        <member name="T:LogicLib.Stones">
+            <summary>
+            typy herních kamenů a jejich hodnoty
+            </summary>
+        </member>
+        <member name="F:LogicLib.Stones.Empty">
+            <summary>
+            prázdné pole
+            </summary>
+        </member>
+        <member name="F:LogicLib.Stones.BlackStone">
+            <summary>
+            černý kámen
+            </summary>
+        </member>
+        <member name="F:LogicLib.Stones.WhiteStone">
+            <summary>
+            bílý kámen
+            </summary>
+        </member>
+        <member name="F:LogicLib.Stones.BlackParachute">
+            <summary>
+            černý parašutista
+            </summary>
+        </member>
+        <member name="F:LogicLib.Stones.WhiteParachute">
+            <summary>
+            bílý parašutista
+            </summary>
+        </member>
+        <member name="F:LogicLib.Stones.BlackDame">
+            <summary>
+            černá dáma
+            </summary>
+        </member>
+        <member name="F:LogicLib.Stones.WhiteDame">
+            <summary>
+            bílá dáma
+            </summary>
+        </member>
+        <member name="T:LogicLib.Board">
+            <summary>
+            objekt hrací desky, provádí samotné operace skákání a pohybu po desce, ale nehledí na pravidla, ty se musí ošetřit na vyšší úrovni, obsahuje metodu k samo-ohodnocení, kterou využívá výpočet predikce tahů
+            </summary>
+        </member>
+        <member name="M:LogicLib.Board.#ctor">
+            <summary>
+            std. konstruktor
+            </summary>
+        </member>
+        <member name="P:LogicLib.Board.Locations">
+            <summary>
+            seznam lokací a kamenů na nich
+            </summary>
+        </member>
+        <member name="M:LogicLib.Board.Copy">
+            <summary> Zkopíruje desku do nové instance </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Board.Reset">
+            <summary>
+            resetuje desku
+            </summary>
+        </member>
+        <member name="M:LogicLib.Board.Move(LogicLib.Lcs,LogicLib.Lcs)">
+            <summary>
+            provede pohyb
+            </summary>
+            <param name="src">zdroj</param>
+            <param name="trg">cíl</param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Board.Jump(LogicLib.Lcs,LogicLib.Lcs,LogicLib.Lcs)">
+            <summary>
+            provede skok
+            </summary>
+            <param name="src">zdroj</param>
+            <param name="trg">sebraný kámen</param>
+            <param name="dst">cíl</param>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Board.Evaluate">
+            <summary> Ohodnotí aktuální stav desky </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogicLib.Board.ToIEnumerable``1">
+            <summary>
+            pro jednodužší práci s enumy
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:LogicLib.TurnRecord">
+            <summary>
+            Reprezentuje záznam jednoho tahu, provedené akce, aktivního hráče a změny hracích figurek
+            </summary>
+        </member>
+        <member name="M:LogicLib.TurnRecord.#ctor">
+            <summary>
+            prázdný konstruktor pre serializaci
+            </summary>
+        </member>
+        <member name="M:LogicLib.TurnRecord.#ctor(System.Int32)">
+            <summary>
+            std. konstruktor
+            </summary>
+            <param name="index">index tahu</param>
+        </member>
+        <member name="P:LogicLib.TurnRecord.ActivePlayer">
+            <summary>
+            aktivní hráč
+            </summary>
+        </member>
+        <member name="P:LogicLib.TurnRecord.Change">
+            <summary>
+            došlo li ke změně figurky
+            </summary>
+        </member>
+        <member name="P:LogicLib.TurnRecord.Index">
+            <summary>
+            index tahu
+            </summary>
+        </member>
+        <member name="P:LogicLib.TurnRecord.Strokes">
+            <summary>
+            individuální pohyby na desce v rámci tahu (multiskoky)
+            </summary>
+        </member>
+    </members>
+</doc>

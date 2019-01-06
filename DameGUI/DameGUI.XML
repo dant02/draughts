@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DameGUI</name>
+    </assembly>
+    <members>
+        <member name="T:DameGUI.Components.PlayBar">
+            <summary>
+            Interaction logic for PlayBar.xaml
+            </summary>
+            <summary>
+            PlayBar
+            </summary>
+        </member>
+        <member name="M:DameGUI.Components.PlayBar.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.Components.PopUp">
+            <summary> Interaction logic for PopUp.xaml </summary>
+            <summary>
+            PopUp
+            </summary>
+        </member>
+        <member name="M:DameGUI.Components.PopUp.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.Components.Renderer">
+            <summary> Interaction logic for Renderer.xaml </summary>
+            <summary>
+            Renderer
+            </summary>
+        </member>
+        <member name="M:DameGUI.Components.Renderer.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.Components.Console">
+            <summary>
+            Interaction logic for Console.xaml
+            </summary>
+            <summary>
+            Console
+            </summary>
+        </member>
+        <member name="M:DameGUI.Components.Console.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.SettingsWnd">
+            <summary>
+            Interaction logic for SettingsWnd.xaml
+            </summary>
+            <summary>
+            SettingsWnd
+            </summary>
+        </member>
+        <member name="M:DameGUI.SettingsWnd.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.WndAbout">
+            <summary>
+            Interaction logic for WndAbout.xaml
+            </summary>
+            <summary>
+            WndAbout
+            </summary>
+        </member>
+        <member name="M:DameGUI.WndAbout.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.WndRules">
+            <summary>Interaction logic for WndRules.xaml</summary>
+            <summary>
+            WndRules
+            </summary>
+        </member>
+        <member name="M:DameGUI.WndRules.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.App">
+            <summary> Interaction logic for App.xaml </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:DameGUI.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:DameGUI.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:DameGUI.MainWnd">
+            <summary> Interaction logic for MainWindow.xaml </summary>
+            <summary>
+            MainWnd
+            </summary>
+        </member>
+        <member name="M:DameGUI.MainWnd.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:DameGUI.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:DameGUI.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:DameGUI.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

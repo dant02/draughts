@@ -1,0 +1,269 @@
+﻿Projekt - implementace
+======================
+[listopad 2010]
+
+Požadavky
+---------
+
+- oddělení implementace výkonné části (logika) od implementace UI
+části - možnost použít stejnou logiku s různým UI (výměna textové
+konzole za GUI)
+
+- minimální rozhraní logiky pro UI - ideálně jen pro řízení hry, kvůli
+efektivitě i pro zobrazení hrací desky, historie tahů apod.
+
+- žádné rozhraní UI pro logiku - úplná nezávislost logiky na UI!
+
+- platformově nezávislá implementace logiky, např. formou sdílené
+knihovny
+
+- UI může být platformově závisle implementované, ale lze i nezávisle
+(konzole, multiplatformní GUI knihovny, OpenGL, Java Swing apod.)
+
+Postup
+---------------------------------------------------------------------
+
+Hrací deska
+
+- stavy políček (prázdné, typ figurky) = (dvojrozměrné) pole čísel,
+pojmenované typy > nebo < nez indexy do pole
+
+- inicializace desky = výchozí rozestavění figurek podle pravidel
+
+UI
+
+- textová konzole
+
+- zobrazení hrací desky
+
+Tah
+
+- posloupnost střídavě indexů do pole desky a dvou stavů políček
+(aktuálního a nového) = posloupnost (dvojic) čísel, délka: poslední
+prvek zarážka nebo první prvek počet
+
+UI
+
+- textové zadání tahu lidským hráčem, po zobrazení desky
+
+- [debug] zobrazení zadaného tahu
+
+Hrací deska
+
+- provedení tahu = změna desky
+
+UI
+
+- inicializace hry (desky, hráčů atd.)
+
+- (nekonečný) cyklus zobrazení desky, zadání tahu, volání provedení
+tahu - "řízení" hry
+
+Pravidla
+
+- inicializace hráče na tahu - podle pravidel
+
+- změna hráče na tahu = číslo barvy hráče, podle pravidel
+
+Řízení hry
+
+- volané z UI po zadání tahu, se zadaným tahem
+
+- volá provedení tahu
+
+- volá změnu hráče na tahu
+
+- návrat do UI
+
+- "pasivní" řízení hry aktivované z UI
+
+UI
+
+- zobrazení hráče na tahu, po zobrazení desky
+
+Pravidla
+
+- konečný stav hry = číslo > nebo < než stavy figurek
+
+- výpočet všech možných tahů platných podle pravidel (včetně stavů
+políček), pro danou figurku a daného hráče = seznam tahů
+
+UI
+
+- volitelně zobrazení všech tahů zvolené figurky a hráče na tahu
+(kontrola), po zadání první pozice tahu (figurky)
+
+Pravidla
+
+- kontrola platnosti tahu = je v seznamu tahů pro danou figurku a
+hráče na tahu?
+
+- rozšíření kontroly o úpravu tahu (podle pravidel) - doplnění stavů
+políček, pro braní figury, povýšení figury
+
+Řízení hry
+
+- volá kontrolu platnosti tahu, před provedením tahu, speciální návrat
+do UI, pokud kontrola neuspěje
+
+UI
+
+- zobrazení hlášky o neplatnosti tahu při speciálním návratu z Řízení
+hry, před zadáváním tahu
+
+Pravidla
+
+- test konce hry (výhra, prohra, remíza) - odložit test, pro který je
+potřeba historie tahů
+
+Řízení hry
+
+- volá test konce hry, před změnou hráče na tahu, speciální návrat do
+UI, pokud test uspěje
+
+UI
+
+- zobrazení výsledku hry při speciálním návratu z Řízení hry, před
+zadáváním tahu
+
+Pravidla
+
+- výpočet všech možných tahů platných podle pravidel, pro všechny
+figurky a daného hráče = sjednocení seznamů pro figurku a hráče
+
+UI
+
+- [debug] výpis předchozího
+
+Mozek
+
+- výběr nejlepšího tahu ze seznamu tahů pro všechny figurky a daného
+hráče - náhodný výběr
+
+Řízení hry
+
+- nastavení hráčů: lidský vs. počítačový = čísla pro barvy hráčů,
+obtížnost = číslo
+
+- inicializace nastavení hráčů
+
+UI
+
+- volba pro nastavení hráčů, před zadáním tahu lidského hráče
+
+- spuštění výběru nejlepšího tahu místo zadávání tahu lidského hráče,
+pokud je na tahu počítačový hráč
+
+- nevolání kontroly platnosti tahu, pokud je na tahu počítačový hráč
+
+Hrací deska
+
+- provedení inverzního tahu - tah "pozpátku"
+
+Mozek
+
+- ohodnocení desky - hodnot figurek, pozic figurek = seznamu tahů pro
+všechny figurky a daného hráče (braní figurky, povýšení figurky
+apod.), konce hry, moje figurky +, soupeřovy -, číslo
+
+- výběr nejlepšího tahu - algoritmus MiniMax, AlfaBeta apod.,
+provedení tahu a inverzního tahu na kopii desky
+
+- [debug] zobrazení (průběhu výběru) vybraného tahu
+
+UI
+
+- volba pro nápovědu tahu, pokud je na tahu lidský hráč, před zadáním
+tahu
+
+- nápověda tahu: spuštění výběru nejlepšího tahu
+
+- možnost zrušení zadávání tahu od lidského hráče
+
+---------------------------------------------------------------------
+
+Mozek
+
+- výběr nejlepšího tahu do samostatného vlákna
+
+- uložení vybraného tahu do sdílené proměnné - chráněný přístup!
+
+- signalizace UI o (průběhu) výběru
+
+Řízení hry
+
+- nastavení hráčů zruší výběr nejlepšího tahu = ukončení vlákna
+
+UI
+
+- čekání na signalizaci od Mozku po spuštění výběru nejlepšího tahu -
+pasivní!, handler funkce, aktivní čekání na zadání voleb
+
+- volba pozastavení, znovurozběhnutí a zrušení výběru nejlepšího tahu
+= vlákna
+
+- volitelně zobrazení průběhu výběru tahu, po signalizaci od Mozku
+
+- volání Řízení hry po finální signalizaci od Mozku (zadání tahu), s
+tahem načteným ze sdílené proměnné
+
+- nápověda tahu: pasivní čekání na finální signalizaci od Mozku,
+aktivní čekání na zadání voleb a tahu lidského hráče, zobrazit vybraný
+tah po finální signalizaci od Mozku, pokud nebyl zadán tah lidským
+hráčem
+
+- zrušit generování nápovědy tahu při zadání tahu od lidského hráče
+
+Hrací deska, Řízení hry
+
+- uložení a načtení desky, nastavení hráčů a hráče na tahu do a ze
+souboru - textového (TXT, XML), platformově nezávislá samostatná
+implementace (mimo logiku i UI)
+
+UI
+
+- volby pro uložení a načtení
+
+Hrací deska
+
+- historie tahů = dva zásobníky, pro undo a redo tahy
+
+- inicializace historie tahů = vyprázdnění obou zásobníků
+
+- po provedení tahu z Řízení hry tah do undo zásobníku, vyprázdnění
+redo zásobníku
+
+- undo/redo: výběr tahu z undo/redo zásobníku, vložení do redo/undo
+zásobníku a provedení inverzního/ tahu
+
+- uložení historie tahů
+
+UI
+
+- zobrazení historie tahů, po zobrazení desky
+
+- volba pro undo/redo
+
+- undo/redo: speciální volání Řízení hry
+
+Řízení hry
+
+- volání provedení undo/redo místo načtení a volání provedení tahu při
+speciálním volání z UI
+
+- undo/redo zruší výběr nejlepšího tahu
+
+UI
+
+- volba pro replay, po zobrazení výsledku hry
+
+- replay: celkové undo, krokované redo
+
+- volby při replay ...
+
+- volby pro novou hru, ukončení hry, ... (zruší výběr nejlepšího tahu)
+
+- nahrazení textové konzole GUI - grafické zobrazení desky, hráče na
+tahu, historie apod., zadávání tahu lidského hráče myší, menu místo
+voleb, smyčka zpracování událostí místo (nekonečného) cyklu, ... žádné
+změny logiky!
